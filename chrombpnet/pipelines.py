@@ -12,13 +12,28 @@ def chrombpnet_train_pipeline(args):
 		fpx = args.file_prefix+"_"
 	else:
 		fpx = ""
-		
-	# Shift bam and convert to bigwig
-	import chrombpnet.helpers.preprocessing.reads_to_bigwig as reads_to_bigwig	
+
+	# From vhecht
+	# Bypass bigwig generation if file is already a bigwig
 	args.output_prefix = os.path.join(args.output_dir,"auxiliary/{}data".format(fpx))
+	args.bigwig = os.path.join(args.output_dir, "auxiliary/{}data_unstranded.bw".format(fpx))
 	args.plus_shift = None
 	args.minus_shift = None
-	reads_to_bigwig.main(args)
+	
+	if 'bigWig' in args.input_bam_file or 'bigwig' in args.input_bam_file or 'bw' in args.input_bam_file:
+		print('Input file is a bigwig. Bypassing reads_to_bigwig step in pipeline...')
+		print('Copying bigwig to location specified in args.bigwig...')
+		shutil.copy2(src=args.input_bam_file, dst=args.bigwig)
+	else:
+		import chrombpnet.helpers.preprocessing.reads_to_bigwig as reads_to_bigwig
+		reads_to_bigwig.main(args)
+	
+	# Shift bam and convert to bigwig (Replaced with bigwig check)
+#	import chrombpnet.helpers.preprocessing.reads_to_bigwig as reads_to_bigwig	
+#	args.output_prefix = os.path.join(args.output_dir,"auxiliary/{}data".format(fpx))
+#	args.plus_shift = None
+#	args.minus_shift = None
+#	reads_to_bigwig.main(args)
 	
 	# QC bigwig
 	import chrombpnet.helpers.preprocessing.analysis.build_pwm_from_bigwig as build_pwm_from_bigwig	
