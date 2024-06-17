@@ -13,14 +13,15 @@ def chrombpnet_train_pipeline(args):
 		fpx = args.file_prefix+"_"
 	else:
 		fpx = ""
-
+	
 	# From vhecht
 	# Bypass bigwig generation if file is already a bigwig
 	args.output_prefix = os.path.join(args.output_dir,"auxiliary/{}data".format(fpx))
 	args.bigwig = os.path.join(args.output_dir, "auxiliary/{}data_unstranded.bw".format(fpx))
 	args.plus_shift = None
 	args.minus_shift = None
-	
+
+	'''
 	if 'bigWig' in args.input_bam_file or 'bigwig' in args.input_bam_file or 'bw' in args.input_bam_file:
 		print('Input file is a bigwig. Bypassing reads_to_bigwig step in pipeline...')
 		print('Copying bigwig to location specified in args.bigwig...')
@@ -177,7 +178,7 @@ def chrombpnet_train_pipeline(args):
 		convert_html_to_pdf.main(os.path.join(args.output_dir,"evaluation/modisco_counts/motifs.html"),os.path.join(args.output_dir,"evaluation/{}chrombpnet_nobias_counts.pdf".format(fpx)))
 	if "profile" in args_copy.profile_or_counts:
 		convert_html_to_pdf.main(os.path.join(args.output_dir,"evaluation/modisco_profile/motifs.html"),os.path.join(args.output_dir,"evaluation/{}chrombpnet_nobias_profile.pdf".format(fpx)))
-	
+	'''
 	import chrombpnet.helpers.generate_reports.make_html as make_html
 	args_copy = copy.deepcopy(args)
 	args_copy.input_dir = args_copy.output_dir
