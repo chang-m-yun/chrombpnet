@@ -17,7 +17,7 @@ def chrombpnet_train_pipeline(args):
 	# From vhecht
 	# Bypass bigwig generation if file is already a bigwig
 	args.output_prefix = os.path.join(args.output_dir,"auxiliary/{}data".format(fpx))
-	args.bigwig = os.path.join(args.output_dir, "auxiliary/{}data_unstranded.bw".format(fpx))
+	args.bigwig = os.path.join(args.output_dir,"auxiliary/{}data_unstranded.bw".format(fpx))
 	args.plus_shift = None
 	args.minus_shift = None
 	
@@ -30,11 +30,11 @@ def chrombpnet_train_pipeline(args):
 		reads_to_bigwig.main(args)
 	
 	# Shift bam and convert to bigwig (Replaced with bigwig check)
-#	import chrombpnet.helpers.preprocessing.reads_to_bigwig as reads_to_bigwig	
-#	args.output_prefix = os.path.join(args.output_dir,"auxiliary/{}data".format(fpx))
-#	args.plus_shift = None
-#	args.minus_shift = None
-#	reads_to_bigwig.main(args)
+	# import chrombpnet.helpers.preprocessing.reads_to_bigwig as reads_to_bigwig	
+	# args.output_prefix = os.path.join(args.output_dir,"auxiliary/{}data".format(fpx))
+	# args.plus_shift = None
+	# args.minus_shift = None
+	# reads_to_bigwig.main(args)
 	
 	# QC bigwig
 	import chrombpnet.helpers.preprocessing.analysis.build_pwm_from_bigwig as build_pwm_from_bigwig	
