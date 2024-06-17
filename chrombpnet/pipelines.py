@@ -173,8 +173,10 @@ def chrombpnet_train_pipeline(args):
 		os.system(modisco_command)
 
 	import chrombpnet.evaluation.modisco.convert_html_to_pdf as convert_html_to_pdf
-	convert_html_to_pdf.main(os.path.join(args.output_dir,"evaluation/modisco_counts/motifs.html"),os.path.join(args.output_dir,"evaluation/{}chrombpnet_nobias_counts.pdf".format(fpx)))
-	convert_html_to_pdf.main(os.path.join(args.output_dir,"evaluation/modisco_profile/motifs.html"),os.path.join(args.output_dir,"evaluation/{}chrombpnet_nobias_profile.pdf".format(fpx)))
+	if "counts" in args_copy.profile_or_counts:
+		convert_html_to_pdf.main(os.path.join(args.output_dir,"evaluation/modisco_counts/motifs.html"),os.path.join(args.output_dir,"evaluation/{}chrombpnet_nobias_counts.pdf".format(fpx)))
+	if "profile" in args_copy.profile_or_counts:
+		convert_html_to_pdf.main(os.path.join(args.output_dir,"evaluation/modisco_profile/motifs.html"),os.path.join(args.output_dir,"evaluation/{}chrombpnet_nobias_profile.pdf".format(fpx)))
 	
 	import chrombpnet.helpers.generate_reports.make_html as make_html
 	args_copy = copy.deepcopy(args)
@@ -276,8 +278,10 @@ def chrombpnet_qc(args):
 		os.system(modisco_command)
 	
 	import chrombpnet.evaluation.modisco.convert_html_to_pdf as convert_html_to_pdf
-	#convert_html_to_pdf.main(os.path.join(args.output_dir,"evaluation/modisco_counts/motifs.html"),os.path.join(args.output_dir,"evaluation/{}chrombpnet_nobias_counts.pdf".format(fpx)))
-	convert_html_to_pdf.main(os.path.join(args.output_dir,"evaluation/modisco_profile/motifs.html"),os.path.join(args.output_dir,"evaluation/{}chrombpnet_nobias_profile.pdf".format(fpx)))
+	if "counts" in args_copy.profile_or_counts:
+		convert_html_to_pdf.main(os.path.join(args.output_dir,"evaluation/modisco_counts/motifs.html"),os.path.join(args.output_dir,"evaluation/{}chrombpnet_nobias_counts.pdf".format(fpx)))
+	if "profile" in args_copy.profile_or_counts:
+		convert_html_to_pdf.main(os.path.join(args.output_dir,"evaluation/modisco_profile/motifs.html"),os.path.join(args.output_dir,"evaluation/{}chrombpnet_nobias_profile.pdf".format(fpx)))
 	
 	import chrombpnet.helpers.generate_reports.make_html as make_html
 	args_copy = copy.deepcopy(args)
@@ -394,8 +398,10 @@ def train_bias_pipeline(args):
 		os.system(modisco_command)
 	
 	import chrombpnet.evaluation.modisco.convert_html_to_pdf as convert_html_to_pdf
-	convert_html_to_pdf.main(os.path.join(args.output_dir,"evaluation/modisco_counts/motifs.html"),os.path.join(args.output_dir,"evaluation/{}bias_counts.pdf".format(fpx)))
-	convert_html_to_pdf.main(os.path.join(args.output_dir,"evaluation/modisco_profile/motifs.html"),os.path.join(args.output_dir,"evaluation/{}bias_profile.pdf".format(fpx)))
+	if "counts" in args_copy.profile_or_counts:
+		convert_html_to_pdf.main(os.path.join(args.output_dir,"evaluation/modisco_counts/motifs.html"),os.path.join(args.output_dir,"evaluation/{}bias_counts.pdf".format(fpx)))
+	if "profile" in args_copy.profile_or_counts:
+		convert_html_to_pdf.main(os.path.join(args.output_dir,"evaluation/modisco_profile/motifs.html"),os.path.join(args.output_dir,"evaluation/{}bias_profile.pdf".format(fpx)))
 
 	import chrombpnet.helpers.generate_reports.make_html_bias as make_html_bias
 	args_copy = copy.deepcopy(args)
@@ -473,8 +479,10 @@ def bias_model_qc(args):
 		os.system(modisco_command)
 	
 	import chrombpnet.evaluation.modisco.convert_html_to_pdf as convert_html_to_pdf
-	convert_html_to_pdf.main(os.path.join(args.output_dir,"evaluation/modisco_counts/motifs.html"),os.path.join(args.output_dir,"evaluation/{}bias_counts.pdf".format(fpx)))
-	convert_html_to_pdf.main(os.path.join(args.output_dir,"evaluation/modisco_profile/motifs.html"),os.path.join(args.output_dir,"evaluation/{}bias_profile.pdf".format(fpx)))
+	if "counts" in args_copy.profile_or_counts:
+		convert_html_to_pdf.main(os.path.join(args.output_dir,"evaluation/modisco_counts/motifs.html"),os.path.join(args.output_dir,"evaluation/{}bias_counts.pdf".format(fpx)))
+	if "profile" in args_copy.profile_or_counts:
+		convert_html_to_pdf.main(os.path.join(args.output_dir,"evaluation/modisco_profile/motifs.html"),os.path.join(args.output_dir,"evaluation/{}bias_profile.pdf".format(fpx)))
 
 	import chrombpnet.helpers.generate_reports.make_html_bias as make_html_bias
 	args_copy = copy.deepcopy(args)
